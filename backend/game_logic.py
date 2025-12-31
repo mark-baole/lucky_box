@@ -8,22 +8,29 @@ class Rarity(str, Enum):
     LEGENDARY = "Legendary"
 
 class Animal:
-    def __init__(self, name: str, emoji: str, rarity: Rarity):
+    def __init__(self, name: str, emoji: str, rarity: Rarity, image_url: Optional[str] = None):
         self.name = name
         self.emoji = emoji
         self.rarity = rarity
+        self.image_url = image_url
 
 ANIMALS = [
-    Animal("Lion", "🦁", Rarity.LEGENDARY),
+    Animal("Lion", "🦁", Rarity.RARE),
     Animal("Elephant", "🐘", Rarity.RARE),
     Animal("Monkey", "🐒", Rarity.COMMON),
     Animal("Panda", "🐼", Rarity.RARE),
-    Animal("Tiger", "🐯", Rarity.LEGENDARY),
+    Animal("Tiger", "🐯", Rarity.RARE),
     Animal("Dog", "🐶", Rarity.COMMON),
     Animal("Cat", "🐱", Rarity.COMMON),
     Animal("Rabbit", "🐰", Rarity.COMMON),
-    Animal("Fox", "🦊", Rarity.RARE),
+    Animal("Fox", "🦊", Rarity.COMMON),
     Animal("Bear", "🐻", Rarity.RARE),
+    # Family Members
+    Animal("Dad", "👨", Rarity.LEGENDARY, "/static/images/dad.png"),
+    Animal("Mom", "👩", Rarity.LEGENDARY, "/static/images/mom.png"),
+    Animal("Son", "👦", Rarity.LEGENDARY, "/static/images/son.png"),
+    Animal("Grandpa", "👴", Rarity.LEGENDARY, "/static/images/grandpa.png"),
+    Animal("Grandma", "👵", Rarity.LEGENDARY, "/static/images/grandma.png"),
 ]
 
 class GameState:
@@ -53,5 +60,6 @@ class GameState:
             "box_index": box_index,
             "animal_name": animal.name,
             "emoji": animal.emoji,
-            "rarity": animal.rarity.value
+            "rarity": animal.rarity.value,
+            "image_url": animal.image_url
         }
