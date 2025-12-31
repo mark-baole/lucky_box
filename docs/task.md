@@ -1,0 +1,8 @@
+- [x] Implement Backend
+    - [x] Create `backend/game_logic.py`
+    - [x] Create `backend/main.py`
+- [x] Implement Frontend
+    - [x] Create `frontend/index.html`
+- [x] Verification
+    - [x] Run backend
+    - [x] Test with frontend

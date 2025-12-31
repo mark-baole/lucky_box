@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Lucky Box Game
+  version: 1.0.0
+  description: A simple game for opening boxes with animal prizes.
+
+paths:
+  /game/setup:
+    post:
+      summary: Initialize the game with a specific number of boxes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                box_count:
+                  type: integer
+                  minimum: 1
+                  maximum: 50
+      responses:
+        '201':
+          description: Game initialized.
+
+  /box/open:
+    post:
+      summary: Open the next available box.
+      responses:
+        '200':
+          description: Successful opening.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoxResult'
+        '400':
+          description: No boxes left to open.
+
+components:
+  schemas:
+    BoxResult:
+      type: object
+      properties:
+        box_index:
+          type: integer
+        animal_name:
+          type: string
+        emoji:
+          type: string
+        rarity:
+          type: string
+          enum: [Common, Rare, Legendary]
